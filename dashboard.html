@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThermoSnug - Email Submissions Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF9F6;
+            --pitch-black: #0A0A0A;
+            --soft-gray: #E8E8E8;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--pitch-black);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: rgba(10, 10, 10, 0.6);
+            font-size: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(10, 10, 10, 0.6);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--pitch-black);
+        }
+
+        .stat-card.main { border-top: 4px solid var(--success); }
+        .stat-card.sh2 { border-top: 4px solid var(--warning); }
+        .stat-card.sh3 { border-top: 4px solid var(--info); }
+        .stat-card.total { border-top: 4px solid var(--pitch-black); }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--soft-gray);
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: rgba(10, 10, 10, 0.5);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: var(--pitch-black);
+            border-bottom-color: var(--pitch-black);
+        }
+
+        .tab:hover {
+            color: var(--pitch-black);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--soft-gray);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--soft-gray);
+        }
+
+        tbody tr:hover {
+            background: rgba(250, 249, 246, 0.5);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .email-cell {
+            font-weight: 500;
+        }
+
+        .timestamp-cell {
+            color: rgba(10, 10, 10, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge.main { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .badge.sh2 { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .badge.sh3 { background: rgba(59, 130, 246, 0.1); color: var(--info); }
+
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            font-size: 1.2rem;
+            color: rgba(10, 10, 10, 0.5);
+        }
+
+        .error {
+            background: #FEE2E2;
+            color: #DC2626;
+            padding: 2rem;
+            border-radius: 30px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            color: rgba(10, 10, 10, 0.5);
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .refresh-btn {
+            background: var(--pitch-black);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+            margin: 2rem auto;
+            display: block;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--soft-gray);
+            border-radius: 50px;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--pitch-black);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Email Submissions</h1>
+            <p class="subtitle">Track all email subscriptions across landing pages</p>
+        </header>
+
+        <div id="stats-section" class="stats-grid">
+            <!-- Stats will be loaded here -->
+        </div>
+
+        <button class="refresh-btn" onclick="loadDashboard()">🔄 Refresh Data</button>
+
+        <input type="text" id="search-box" class="search-box" placeholder="Search by email...">
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('all')">All Submissions</button>
+            <button class="tab" onclick="switchTab('main')">Main Page</button>
+            <button class="tab" onclick="switchTab('sh2')">SH2 Page</button>
+            <button class="tab" onclick="switchTab('sh3')">SH3 Page</button>
+        </div>
+
+        <div class="table-container">
+            <div id="content">
+                <div class="loading">Loading submissions...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allSubmissions = [];
+        let currentFilter = 'all';
+
+        async function loadDashboard() {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = '<div class="loading">Loading submissions...</div>';
+
+            try {
+                const response = await fetch('/api/get-submissions');
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Failed to load data');
+                }
+
+                const { submissions, counts } = result.data;
+
+                // Update stats
+                document.getElementById('stats-section').innerHTML = `
+                    <div class="stat-card main">
+                        <h3>Main Page</h3>
+                        <div class="stat-number">${counts.main}</div>
+                    </div>
+                    <div class="stat-card sh2">
+                        <h3>SH2 Page</h3>
+                        <div class="stat-number">${counts.sh2}</div>
+                    </div>
+                    <div class="stat-card sh3">
+                        <h3>SH3 Page</h3>
+                        <div class="stat-number">${counts.sh3}</div>
+                    </div>
+                    <div class="stat-card total">
+                        <h3>Total</h3>
+                        <div class="stat-number">${counts.total}</div>
+                    </div>
+                `;
+
+                // Combine all submissions
+                allSubmissions = [
+                    ...submissions.main,
+                    ...submissions.sh2,
+                    ...submissions.sh3
+                ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                // Display submissions
+                displaySubmissions();
+
+            } catch (error) {
+                contentDiv.innerHTML = `
+                    <div class="error">
+                        <h3>⚠️ Error Loading Data</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function switchTab(filter) {
+            currentFilter = filter;
+            
+            // Update active tab
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Display filtered submissions
+            displaySubmissions();
+        }
+
+        function displaySubmissions(searchQuery = '') {
+            const contentDiv = document.getElementById('content');
+            
+            // Filter submissions
+            let filtered = allSubmissions;
+            
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(s => s.source === currentFilter);
+            }
+
+            if (searchQuery) {
+                filtered = filtered.filter(s => 
+                    s.email.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            }
+
+            if (filtered.length === 0) {
+                contentDiv.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No submissions found</h3>
+                        <p>Try adjusting your filters or search query</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Generate table
+            const tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Source</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filtered.map(submission => `
+                            <tr>
+                                <td>${submission.id}</td>
+                                <td class="email-cell">${submission.email}</td>
+                                <td><span class="badge ${submission.source}">${submission.source.toUpperCase()}</span></td>
+                                <td class="timestamp-cell">${new Date(submission.timestamp).toLocaleString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            contentDiv.innerHTML = tableHTML;
+        }
+
+        // Search functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchBox = document.getElementById('search-box');
+            searchBox.addEventListener('input', (e) => {
+                displaySubmissions(e.target.value);
+            });
+
+            // Load data on page load
+            loadDashboard();
+        });
+    </script>
+</body>
+</html>

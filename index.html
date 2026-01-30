@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThermoSnug - Smart Heating Innovation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-75VWR8WEX1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-75VWR8WEX1');
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAF9F6;
+            --off-white: #F5F5F0;
+            --pitch-black: #0A0A0A;
+            --soft-gray: #E8E8E8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--pitch-black);
+            background-color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--cream);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--pitch-black);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--pitch-black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            opacity: 1;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--pitch-black);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            background: var(--cream);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Hero Impact Section */
+        .hero-impact {
+            min-height: 100vh;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            background: url('bg.png') center/cover no-repeat;
+            background-attachment: fixed;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .hero-impact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(250, 249, 246, 0.1) 0%, rgba(250, 249, 246, 0.4) 100%);
+            z-index: 0;
+        }
+
+        .hero-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: rgba(10, 10, 10, 0.05);
+            white-space: nowrap;
+            z-index: -1;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-product-image {
+            display: none;
+        }
+
+        .hero-bottom-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 500px;
+            padding-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--pitch-black);
+            max-width: 400px;
+            opacity: 0.95;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+        }
+
+        .explore-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--pitch-black);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: fit-content;
+        }
+
+        .explore-btn:hover {
+            transform: translateX(5px);
+        }
+
+        .arrow-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            color: var(--pitch-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .first-release-badge {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            background: rgba(250, 249, 246, 0.95);
+            border: 2px solid var(--pitch-black);
+            border-radius: 40px;
+            padding: 1.5rem;
+            width: 200px;
+            z-index: 4;
+            backdrop-filter: blur(10px);
+        }
+
+        .first-release-badge h4 {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .badge-preview {
+            width: 100%;
+            height: 100px;
+            background: url('product-detail.jpg') center/cover;
+            border-radius: 30px;
+            margin-top: 0.5rem;
+        }
+
+        /* Marquee Section */
+        .marquee-section {
+            background: var(--pitch-black);
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Technology Collection (Dark Section) */
+        .tech-collection {
+            background: var(--pitch-black);
+            padding: 8rem 5%;
+            color: white;
+        }
+
+        .tech-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .tech-lifestyle-image {
+            width: 100%;
+            height: 700px;
+            background: url('//thermosnug.com/cdn/shop/files/da4b22df-d608-4dca-9432-f6942f43e06e.png?v=14637766320480592436') center/cover;
+            border-radius: 50px;
+        }
+
+        .tech-content h2 {
+            font-size: 4rem;
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .tech-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .tech-detail-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-detail-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .tech-detail-item p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.85;
+        }
+
+        .tech-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .tech-thumb {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tech-thumb-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-thumb p {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .view-details-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            color: var(--pitch-black);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .view-details-btn:hover {
+            transform: translateX(5px);
+        }
+
+        /* Case Studies Section */
+        .case-studies {
+            padding: 8rem 5%;
+            background: var(--cream);
+        }
+
+        .case-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 5rem;
+        }
+
+        .case-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .case-list h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .case-item {
+            padding: 1.5rem 0;
+            border-bottom: 2px solid rgba(10, 10, 10, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .case-item:hover {
+            padding-left: 1rem;
+        }
+
+        .case-item h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.75;
+            max-width: 90%;
+        }
+        
+        .case-item span {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            opacity: 0.3;
+            transition: all 0.3s;
+        }
+        
+        .case-item:hover span {
+            opacity: 1;
+            transform: translateY(-50%) translateX(5px);
+        }
+
+        .case-right-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .case-image {
+            width: 100%;
+            height: 600px;
+            background: url('//thermosnug.com/cdn/shop/files/8cf2245b-2edb-4058-b772-a1a22e954a3c.png?v=41841313445781262') center/cover;
+            border-radius: 50px;
+            transition: all 0.5s ease;
+        }
+
+        /* Core Advantages Section */
+        .core-advantages {
+            padding: 8rem 5%;
+            background: var(--soft-gray);
+        }
+
+        .advantages-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .advantages-container h2 {
+            font-size: 3.5rem;
+            margin-bottom: 5rem;
+            font-weight: 800;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .advantage-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .advantage-icon {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .advantage-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+
+        /* Product Pricing Section */
+        .product-pricing {
+            padding: 8rem 5%;
+            background: var(--pitch-black);
+            color: white;
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+        }
+
+        .product-main-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: url('//thermosnug.com/cdn/shop/files/996aef52-e3ee-46ac-aa2c-b7768f8da1f0.png?v=17376868782920434010') center/cover;
+            border-radius: 50px;
+        }
+
+        .pricing-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .price-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 3rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+
+        .product-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .product-features li:before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background: white;
+            color: var(--pitch-black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .buy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            color: var(--pitch-black);
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Launch Notification Section */
+        .launch-notification {
+            padding: 8rem 5%;
+            background: var(--cream);
+        }
+
+        .notification-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .notification-container h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .notification-hook {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .notify-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .notify-input {
+            flex: 1;
+            padding: 1.5rem 2rem;
+            border: 2px solid var(--pitch-black);
+            border-radius: 50px;
+            background: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .notify-btn {
+            padding: 1.5rem 3rem;
+            background: var(--pitch-black);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s;
+            white-space: nowrap;
+        }
+
+        .notify-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Feature Priority Poll Section */
+        .feature-poll {
+            padding: 8rem 5%;
+            background: var(--pitch-black);
+            color: white;
+        }
+
+        .poll-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .poll-container h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .poll-question {
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            opacity: 0.9;
+        }
+
+        .poll-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .poll-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 3rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .poll-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .poll-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .poll-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.85;
+        }
+
+        .poll-label {
+            display: inline-block;
+            background: white;
+            color: var(--pitch-black);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            padding: 8rem 5%;
+            background: var(--soft-gray);
+        }
+
+        .proof-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .proof-container h2 {
+            font-size: 3.5rem;
+            margin-bottom: 5rem;
+            font-weight: 800;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 50px;
+            padding: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-quote {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .testimonial-author {
+            font-size: 1rem;
+            opacity: 0.7;
+            font-weight: 600;
+        }
+
+        /* Conversion Block */
+        .conversion-block {
+            background: var(--pitch-black);
+            color: white;
+            padding: 8rem 5%;
+        }
+
+        .conversion-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .conversion-container h2 {
+            font-size: 4.5rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+
+        .email-form-wrapper {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            justify-content: center;
+        }
+
+        .email-input-field {
+            flex: 1;
+            padding: 1.5rem 2rem;
+            border: 2px solid white;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .email-input-field::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .submit-btn {
+            padding: 1.5rem 3rem;
+            background: white;
+            color: var(--pitch-black);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer-simple {
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .footer-tagline {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .fade-in.animated {
+            opacity: 1;
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-left.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .slide-right.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scale-in.animated {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content-wrapper,
+            .tech-container,
+            .case-container,
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .notify-form {
+                flex-direction: column;
+            }
+
+            .poll-options {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-bg-text {
+                font-size: 6rem;
+            }
+
+            .hero-impact {
+                align-items: center;
+            }
+
+            .hero-bottom-content {
+                max-width: 100%;
+                padding-bottom: 0;
+            }
+
+            .first-release-badge {
+                position: static;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .first-release-badge {
+                display: none;
+            }
+
+            .hero-bg-text {
+                font-size: 3.5rem;
+            }
+
+            .tech-content h2,
+            .case-list h2,
+            .notification-container h2,
+            .poll-container h2,
+            .proof-container h2,
+            .advantages-container h2,
+            .conversion-container h2 {
+                font-size: 2.5rem;
+            }
+
+            .email-form-wrapper,
+            .notify-form {
+                flex-direction: column;
+            }
+
+            .notify-btn,
+            .submit-btn {
+                width: 100%;
+            }
+
+            .marquee-text {
+                font-size: 1.2rem;
+            }
+
+            .case-container {
+                gap: 3rem;
+            }
+
+            .case-image {
+                height: 400px;
+            }
+
+            .tech-lifestyle-image {
+                height: 400px;
+            }
+
+            .testimonial-card {
+                padding: 2.5rem;
+            }
+
+            .testimonial-quote {
+                font-size: 1.2rem;
+            }
+
+            .poll-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .advantage-icon {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">THERMOSNUG</div>
+        <ul class="nav-menu">
+            <li><a href="#technology">technology</a></li>
+            <li><a href="#comfort">comfort</a></li>
+            <li><a href="#pricing">pricing</a></li>
+        </ul>
+        <button class="nav-toggle"></button>
+    </nav>
+
+    <!-- Section 1: Hero Impact -->
+    <section class="hero-impact">
+        <div class="hero-bg-text">THERMOSNUG</div>
+        
+        <div class="hero-content-wrapper">
+            <div class="hero-product-image"></div>
+            
+            <div class="hero-bottom-content">
+                <p class="hero-description">
+                    The next generation of comfort. A premium plushie powered by smart heating innovation, 
+                    hidden deep inside world-class softness.
+                </p>
+                <a href="#explore" class="explore-btn">
+                    Get Early Access
+                    <span class="arrow-circle">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="first-release-badge">
+            <h4>FIRST RELEASE</h4>
+            <p style="font-size: 0.75rem; opacity: 0.7;">Premium Edition</p>
+            <div class="badge-preview"></div>
+        </div>
+    </section>
+
+    <!-- Section 2: Marquee -->
+    <section class="marquee-section animate-on-scroll">
+        <div class="marquee-content">
+            <div class="marquee-text">
+                SMART HEATING ✦ CLOUD-TOUCH FABRIC ✦ INVISIBLE TECHNOLOGY ✦ PRE-ORDER NOW ✦ 
+                SMART HEATING ✦ CLOUD-TOUCH FABRIC ✦ INVISIBLE TECHNOLOGY ✦ PRE-ORDER NOW ✦
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Technology Collection (Dark Mode) -->
+    <section class="tech-collection" id="technology">
+        <div class="tech-container">
+            <div class="tech-lifestyle-image slide-left"></div>
+            
+            <div class="tech-content slide-right">
+                <h2>innovation</h2>
+                
+                <p class="tech-description">
+                    ThermoSnug seamlessly merges premium textile materials with an intelligent heat management system.
+                </p>
+                
+                <div class="tech-detail-list">
+                    <div class="tech-detail-item">
+                        <h3>Smart-Sense Heating</h3>
+                        <p>Intelligent sensors that maintain a stable and safe temperature, preventing overheating for maximum safety while you sleep.</p>
+                    </div>
+                    
+                    <div class="tech-detail-item">
+                        <h3>Invisible Tech</h3>
+                        <p>Fully integrated heating components; you won't feel any wires or hard elements—only pure, unadulterated softness.</p>
+                    </div>
+                    
+                    <div class="tech-detail-item">
+                        <h3>Long-Lasting Companion</h3>
+                        <p>An energy-efficient battery designed to provide soothing warmth for up to 12 hours on a single charge.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Case Studies / Use Cases -->
+    <section class="case-studies" id="comfort">
+        <div class="case-container">
+            <div class="case-list slide-left">
+                <h2>Use Cases</h2>
+                
+                <div class="case-item">
+                    <h3>Menstrual Pain Relief</h3>
+                    <p>Provides soothing, targeted warmth exactly where you need it to alleviate cramps and tension.</p>
+                    <span>→</span>
+                </div>
+                <div class="case-item">
+                    <h3>Anxiety & Stress Companion</h3>
+                    <p>The specific weight and warmth of the plushie are engineered to provide a calming effect, helping to lower stress and anxiety levels.</p>
+                    <span>→</span>
+                </div>
+                <div class="case-item">
+                    <h3>Better Sleep Quality</h3>
+                    <p>Helps you relax and drift off to sleep faster with a consistent, gentle temperature throughout the night.</p>
+                    <span>→</span>
+                </div>
+                <div class="case-item">
+                    <h3>Winter Travel Essential</h3>
+                    <p>The perfect travel partner to keep you cozy on planes or during long commutes in cold weather.</p>
+                    <span>→</span>
+                </div>
+            </div>
+            
+            <div class="case-right-content slide-right">
+                <div class="case-image"></div>
+                
+                <a href="#explore" class="explore-btn" style="margin-top: 2rem;">
+                    Get Early Access
+                    <span class="arrow-circle">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Core Advantages (The Excellence Section) -->
+    <section class="core-advantages">
+        <div class="advantages-container">
+            <h2 class="animate-on-scroll">beyond the hug.</h2>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card scale-in">
+                    <div class="advantage-icon">✦</div>
+                    <h3>Therapeutic Amber Glow</h3>
+                    <p>The warm glowing belly not only provides heat, but also visual calmness for deep relaxation.</p>
+                </div>
+                
+                <div class="advantage-card scale-in">
+                    <div class="advantage-icon">⚖</div>
+                    <h3>Anti-Stress Weighting</h3>
+                    <p>Designed with weight distribution that provides a real hugging sensation, helping to lower heart rate and anxiety.</p>
+                </div>
+                
+                <div class="advantage-card scale-in">
+                    <div class="advantage-icon">✈</div>
+                    <h3>Travel-Ready Comfort</h3>
+                    <p>Ergonomic size and wireless, ready to accompany you from the sofa to the plane for long journeys.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Product Pricing -->
+    <section class="product-pricing" id="pricing">
+        <div class="pricing-container">
+            <div class="product-image-wrapper slide-left">
+                <div class="product-main-image"></div>
+            </div>
+            
+            <div class="pricing-content slide-right">
+                <h2>Premium Edition</h2>
+                <p class="product-name">ThermoSnug Heated Plushie</p>
+                
+                <div class="price-tag">$79.99</div>
+                <p class="price-note">Early bird price • Limited first batch</p>
+                
+                <ul class="product-features">
+                    <li>Smart-Sense Temperature Control</li>
+                    <li>12+ Hours Battery Life</li>
+                    <li>Cloud-Touch Premium Fabric</li>
+                    <li>Therapeutic Weighting Technology</li>
+                    <li>Machine Washable Cover</li>
+                    <li>USB-C Fast Charging</li>
+                </ul>
+                
+                <a href="#explore" class="buy-btn">
+                    Pre-Order Now
+                    <span class="arrow-circle">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Launch Notification (Get Notified) -->
+    <section class="launch-notification" id="explore">
+        <div class="notification-container animate-on-scroll">
+            <h2>be the first to know.</h2>
+            <p class="notification-hook">
+                We are in the final stages of safety certification. Join over 5,000+ others to receive an instant alert when our first batch goes live.
+            </p>
+            <form class="notify-form" id="email-form" onsubmit="handleEmailSubmit(event)">
+                <input type="email" class="notify-input" id="email-input" placeholder="Enter your email address" required>
+                <button type="submit" class="notify-btn" id="cta-button">Get Notified</button>
+            </form>
+            <p id="form-message" style="margin-top: 1rem; font-size: 0.9rem; display: none;"></p>
+        </div>
+    </section>
+
+    <!-- Section 8: Feature Priority Poll (Choose Your Comfort) -->
+    <section class="feature-poll">
+        <div class="poll-container">
+            <h2 class="animate-on-scroll">help us perfect the warmth.</h2>
+            <p class="poll-question animate-on-scroll">Which innovation speaks to you most?</p>
+            
+            <div class="poll-options">
+                <div class="poll-card scale-in" onclick="alert('Thank you for voting for Advanced Battery Life!')">
+                    <span class="poll-label">A</span>
+                    <h3>Advanced Battery Life</h3>
+                    <p>Soothing warmth that lasts over 12 hours for uninterrupted all-night use.</p>
+                </div>
+                
+                <div class="poll-card scale-in" onclick="alert('Thank you for voting for Therapeutic Weighting!')">
+                    <span class="poll-label">B</span>
+                    <h3>Therapeutic Weighting</h3>
+                    <p>Micro-weighting technology for a deeper anxiety-calming effect.</p>
+                </div>
+                
+                <div class="poll-card scale-in" onclick="alert('Thank you for voting for Easy-Care Fabric!')">
+                    <span class="poll-label">C</span>
+                    <h3>Easy-Care Fabric</h3>
+                    <p>A fully machine-washable exterior without compromising the internal technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Social Proof & Trust (Voices of Comfort) -->
+    <section class="social-proof">
+        <div class="proof-container">
+            <h2 class="animate-on-scroll">tested by seekers of comfort.</h2>
+            
+            <div class="testimonial-card scale-in">
+                <p class="testimonial-quote">
+                    "Since testing the prototype, my sleep routine has completely changed. The warmth is incredibly soothing and feels like a genuine embrace."
+                </p>
+                <p class="testimonial-author">— Sarah J., Beta Tester</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Conversion Block (Don't Miss Out) -->
+    <section class="conversion-block">
+        <div class="conversion-container animate-on-scroll">
+            <h2>Experience the warmth.</h2>
+            
+            <a href="#explore" class="submit-btn">Get Early Access</a>
+            
+            <!-- Footer -->
+            <div class="footer-simple">
+                <p class="footer-tagline">Innovation hidden in softness.</p>
+                <p class="footer-copyright">© 2026 ThermoSnug. Created to warm your days.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+<script>
+  // Animate on Scroll functionality
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('animated');
+        }, index * 100);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with animation classes
+  document.addEventListener('DOMContentLoaded', () => {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll, .fade-in, .slide-left, .slide-right, .scale-in');
+    animatedElements.forEach(el => observer.observe(el));
+  });
+
+  // Handle email form submission
+  async function handleEmailSubmit(event) {
+    event.preventDefault();
+    
+    const emailInput = document.getElementById('email-input');
+    const submitBtn = document.getElementById('cta-button');
+    const formMessage = document.getElementById('form-message');
+    const email = emailInput.value;
+
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formMessage.style.display = 'none';
+
+    try {
+      const response = await fetch('/api/save-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Success
+        formMessage.textContent = data.message || 'Thank you! We will notify you.';
+        formMessage.style.color = 'green';
+        formMessage.style.display = 'block';
+        emailInput.value = ''; // Clear input
+        
+        // Track with Google Analytics
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'cta_click', {
+            event_category: 'engagement',
+            event_label: 'main_cta'
+          });
+        }
+      } else {
+        // Error from server
+        formMessage.textContent = data.error || 'Something went wrong. Please try again.';
+        formMessage.style.color = 'red';
+        formMessage.style.display = 'block';
+      }
+    } catch (error) {
+      // Network error
+      formMessage.textContent = 'Network error. Please check your connection and try again.';
+      formMessage.style.color = 'red';
+      formMessage.style.display = 'block';
+    } finally {
+      // Re-enable button
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Get Notified';
+    }
+  }
+</script>
+</html>
