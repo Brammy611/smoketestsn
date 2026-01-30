@@ -13,28 +13,32 @@ export default async (req, context) => {
     const sql = neon(process.env.DATABASE_URL);
 
     // Get all submissions from all three tables
-    const [mainSubmissions] = await sql`
+    const mainSubmissions = await sql`
       SELECT id, email, subscribed_at as timestamp, 'main' as source 
       FROM email_subscribers 
       ORDER BY subscribed_at DESC
     `;
     
-    const [sh2Submissions] = await sql`
+    const sh2Submissions = await sql`
       SELECT id, email, submitted_at as timestamp, 'sh2' as source 
       FROM sh2_submissions 
       ORDER BY submitted_at DESC
     `;
     
-    const [sh3Submissions] = await sql`
+    const sh3Submissions = await sql`
       SELECT id, email, submitted_at as timestamp, 'sh3' as source 
       FROM sh3_submissions 
       ORDER BY submitted_at DESC
     `;
 
     // Get counts
-    const [mainCount] = await sql`SELECT COUNT(*) as count FROM email_subscribers`;
-    const [sh2Count] = await sql`SELECT COUNT(*) as count FROM sh2_submissions`;
-    const [sh3Count] = await sql`SELECT COUNT(*) as count FROM sh3_submissions`;
+    const mainCountResult = await sql`SELECT COUNT(*) as count FROM email_subscribers`;
+    const sh2CountResult = await sql`SELECT COUNT(*) as count FROM sh2_submissions`;
+    const sh3CountResult = await sql`SELECT COUNT(*) as count FROM sh3_submissions`;
+    
+    const mainCount = mainCountResult[0]?.count || 0;
+    const sh2Count = sh2CountResult[0]?.count || 0;
+    const sh3Count = sh3CountResult[0]?.count || 0;
 
     return new Response(JSON.stringify({
       success: true,
@@ -45,10 +49,10 @@ export default async (req, context) => {
           sh3: sh3Submissions || []
         },
         counts: {
-          main: mainCount?.count || 0,
-          sh2: sh2Count?.count || 0,
-          sh3: sh3Count?.count || 0,
-          total: (mainCount?.count || 0) + (sh2Count?.count || 0) + (sh3Count?.count || 0)
+          main: Number(mainCount),
+          sh2: Number(sh2Count),
+          sh3: Number(sh3Count),
+          total: Number(mainCount) + Number(sh2Count) + Number(sh3Count)
         }
       }
     }), {
