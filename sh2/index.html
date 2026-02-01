@@ -1077,7 +1077,7 @@
                     
                     <div class="tech-detail-item">
                         <h3>Long-Lasting Companion</h3>
-                        <p>An energy-efficient battery designed to provide soothing warmth for up to 12 hours on a single charge.</p>
+                        <p>Features a built-in auto 1-hour safety timer per use, powered by a 10,000mAh power bank that delivers up to 6 heating sessions on a full charge.</p>
                     </div>
                 </div>
             </div>
@@ -1102,7 +1102,7 @@
                 </div>
                 <div class="case-item">
                     <h3>Better Sleep Quality</h3>
-                    <p>Helps you relax and drift off to sleep faster with a consistent, gentle temperature throughout the night.</p>
+                    <p>Helps you relax and fall asleep faster with gentle, timed warmth designed for safe nighttime use.</p>
                     <span>→</span>
                 </div>
                 <div class="case-item">
@@ -1137,8 +1137,8 @@
                 
                 <div class="advantage-card scale-in">
                     <div class="advantage-icon">⚖</div>
-                    <h3>Anti-Stress Weighting</h3>
-                    <p>Designed with weight distribution that provides a real hugging sensation, helping to lower heart rate and anxiety.</p>
+                    <h3>Grounded Comfort Feel</h3>
+                    <p>Naturally comforting with a subtle 1.5 lb presence from the internal power bank — offering a gentle, grounding feel without intentional weighting.</p>
                 </div>
                 
                 <div class="advantage-card scale-in">
@@ -1162,15 +1162,16 @@
                 <p class="product-name">ThermoSnug Heated Plushie</p>
                 
                 <div class="price-tag">$89.99</div>
-                <p class="price-note">Early bird price • Limited first batch</p>
+                <p class="price-note">Includes a $40 retail 10,000mAh power bank • Early bird • Limited first batch</p>
                 
                 <ul class="product-features">
                     <li>Smart-Sense Temperature Control</li>
-                    <li>12+ Hours Battery Life</li>
+                    <li>Auto 1-Hour Safety Heating Timer (per use)</li>
                     <li>Cloud-Touch Premium Fabric</li>
-                    <li>Therapeutic Weighting Technology</li>
-                    <li>Machine Washable Cover</li>
+                    <li>Includes 10,000mAh Power Bank (≈ 6 uses per full charge)</li>
+                    <li>Surface Wash Recommended for Long-Lasting Quality</li>
                     <li>USB-C Fast Charging</li>
+                    <li>$40 Retail Value Power Bank Included (10,000mAh)</li>
                 </ul>
                 
                 <a href="#explore" class="buy-btn">
@@ -1186,7 +1187,7 @@
         <div class="notification-container animate-on-scroll">
             <h2>be the first to know.</h2>
             <p class="notification-hook">
-                We are in the final stages of safety certification. Join over 5,000+ others to receive an instant alert when our first batch goes live.
+                Every ThermoSnug includes a certified 10,000mAh power bank — no hidden accessories needed.
             </p>
             <form class="notify-form" id="email-form" onsubmit="handleEmailSubmit(event)">
                 <input type="email" class="notify-input" id="email-input" placeholder="Enter your email address" required>
@@ -1196,7 +1197,7 @@
         </div>
     </section>
 
-    <!-- Section 7: Feature Priority Poll (Choose Your Comfort) -->
+    <!-- Section 8: Feature Priority Poll (Choose Your Comfort) -->
     <section class="feature-poll">
         <div class="poll-container">
             <h2 class="animate-on-scroll">help us perfect the warmth.</h2>
@@ -1206,7 +1207,7 @@
                 <div class="poll-card scale-in" onclick="alert('Thank you for voting for Advanced Battery Life!')">
                     <span class="poll-label">A</span>
                     <h3>Advanced Battery Life</h3>
-                    <p>Soothing warmth that lasts over 12 hours for uninterrupted all-night use.</p>
+                    <p>Reliable warmth with a built-in 1-hour safety timer and up to 6 uses per full power bank charge.</p>
                 </div>
                 
                 <div class="poll-card scale-in" onclick="alert('Thank you for voting for Therapeutic Weighting!')">
@@ -1224,7 +1225,7 @@
         </div>
     </section>
 
-    <!-- Section 8: Social Proof & Trust (Voices of Comfort) -->
+    <!-- Section 9: Social Proof & Trust (Voices of Comfort) -->
     <section class="social-proof">
         <div class="proof-container">
             <h2 class="animate-on-scroll">tested by seekers of comfort.</h2>
@@ -1238,7 +1239,7 @@
         </div>
     </section>
 
-    <!-- Section 9: Conversion Block (Don't Miss Out) -->
+    <!-- Section 10: Conversion Block (Don't Miss Out) -->
     <section class="conversion-block">
         <div class="conversion-container animate-on-scroll">
             <h2>Experience the warmth.</h2>
@@ -1277,7 +1278,7 @@
     animatedElements.forEach(el => observer.observe(el));
   });
 
-  // Handle email form submission for SH2
+  // Handle email form submission
   async function handleEmailSubmit(event) {
     event.preventDefault();
     
@@ -1292,7 +1293,7 @@
     formMessage.style.display = 'none';
 
     try {
-      const response = await fetch('/api/save-email-sh2', {
+      const response = await fetch('/api/save-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1313,7 +1314,7 @@
         if (typeof gtag !== 'undefined') {
           gtag('event', 'cta_click', {
             event_category: 'engagement',
-            event_label: 'sh2_cta'
+            event_label: 'main_cta'
           });
         }
       } else {
