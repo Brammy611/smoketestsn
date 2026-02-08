@@ -211,50 +211,57 @@
         .hero-cta-group {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
             justify-content: center;
             flex-direction: column;
             align-items: center;
+            width: 100%;
         }
 
         .primary-cta {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
+            gap: 1.25rem;
             background: var(--coral);
             color: white;
-            padding: 1.25rem 2.5rem;
-            border-radius: 50px;
+            padding: 1.75rem 3.5rem;
+            border-radius: 60px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.35rem;
             transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(255, 107, 74, 0.3);
+            min-width: 320px;
         }
 
         .primary-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 74, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(255, 107, 74, 0.5);
             background: var(--accent-orange);
         }
 
         .cta-subtext {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             opacity: 0.8;
             color: var(--deep-brown);
             font-weight: 500;
+            max-width: 500px;
+            text-align: center;
         }
 
         .arrow-circle {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: white;
             color: var(--coral);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
 
         /* Product Value Section */
@@ -460,29 +467,33 @@
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 2rem;
             font-weight: 800;
+            line-height: 1.1;
         }
 
         .validation-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 3rem;
-            opacity: 0.9;
-            line-height: 1.6;
+            opacity: 0.95;
+            line-height: 1.7;
+            font-weight: 400;
         }
 
         .validation-points {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             align-items: center;
         }
 
         .validation-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 1rem;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 500;
+            max-width: 600px;
+            text-align: left;
         }
 
         .validation-check {
@@ -495,12 +506,14 @@
             align-items: center;
             justify-content: center;
             font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .final-cta-form {
             display: flex;
             gap: 1rem;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto 1rem;
             justify-content: center;
         }
@@ -527,21 +540,23 @@
             border: none;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.05rem;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
             white-space: nowrap;
         }
 
         .cta-submit-btn:hover {
             transform: scale(1.05);
             background: var(--accent-orange);
+            box-shadow: 0 8px 25px rgba(255, 107, 74, 0.4);
         }
 
         .form-note {
-            font-size: 0.85rem;
-            opacity: 0.7;
+            font-size: 0.9rem;
+            opacity: 0.75;
             margin-top: 0.5rem;
+            font-weight: 400;
         }
 
         /* Footer */
@@ -657,10 +672,9 @@
                 width: 100%;
             }
 
-            .primary-cta,
-            .secondary-cta {
+            .primary-cta {
                 width: 100%;
-                justify-content: center;
+                max-width: 450px;
             }
         }
 
@@ -668,6 +682,10 @@
             .comparison-side {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
+            }
+
+            .validation-item {
+                font-size: 1.05rem;
             }
         }
 
@@ -693,6 +711,16 @@
                 padding: 0.6rem 1.2rem;
             }
 
+            .primary-cta {
+                font-size: 1.15rem;
+                padding: 1.5rem 2.5rem;
+                min-width: 280px;
+            }
+
+            .cta-subtext {
+                font-size: 0.85rem;
+            }
+
             .scrolling-track .micro-item {
                 font-size: 1.2rem;
                 padding: 0 2rem;
@@ -704,7 +732,11 @@
             }
 
             .validation-subtitle {
-                font-size: 1rem;
+                font-size: 1.05rem;
+            }
+
+            .validation-item {
+                font-size: 0.95rem;
             }
 
             .product-img {
@@ -876,31 +908,31 @@
     <!-- Validation CTA Section -->
     <section class="validation-cta" id="join">
         <div class="validation-container animate-on-scroll">
-            <h2 class="validation-title">Get ThermoSnug + Premium Power Bank</h2>
+            <h2 class="validation-title">Join The Waitlist</h2>
             
-            <p class="validation-subtitle">Limited early batch includes $40 power bank. Perfect for warming sessions AND charging your devices. Reserve yours before they're gone.</p>
+            <p class="validation-subtitle">Be among the first 500 to experience uninterrupted warmth. Early supporters get exclusive access to our limited launch batch plus premium bonus.</p>
             
             <div class="validation-points">
                 <div class="validation-item">
                     <span class="validation-check">✓</span>
-                    <span>Premium Bundle: Heated plush + $40 power bank included</span>
+                    <span>Complete Bundle: ThermoSnug heated plush plus premium 10,000mAh power bank ($40 value) included</span>
                 </div>
                 <div class="validation-item">
                     <span class="validation-check">✓</span>
-                    <span>Early Bird Pricing: Save on launch bundle</span>
+                    <span>Early Bird Advantage: Priority shipping and exclusive launch pricing when we open pre-orders</span>
                 </div>
                 <div class="validation-item">
                     <span class="validation-check">✓</span>
-                    <span>Limited First Batch: Only 500 units in first release</span>
+                    <span>Limited Launch Batch: Only 500 units available in our first release. Reserve your spot today</span>
                 </div>
             </div>
 
             <!-- Email Form -->
             <form class="final-cta-form" id="email-form" onsubmit="handleEmailSubmit(event)">
                 <input type="email" class="cta-input" id="email-input" placeholder="Enter your email address" required>
-                <button type="submit" class="cta-submit-btn" id="cta-button">Reserve My Bundle</button>
+                <button type="submit" class="cta-submit-btn" id="cta-button">Reserve My Spot</button>
             </form>
-            <p class="form-note">Be first to know when pre-orders open. Spring 2026 launch.</p>
+            <p class="form-note">Join the waitlist now. Launch Spring 2026.</p>
             <p id="form-message" style="margin-top: 1rem; font-size: 0.9rem; display: none;"></p>
 
             <!-- Footer -->
@@ -989,7 +1021,7 @@
     } finally {
       // Re-enable button
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Reserve My Bundle';
+      submitBtn.textContent = 'Reserve My Spot';
     }
   }
 </script>
